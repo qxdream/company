@@ -10,6 +10,7 @@
 */
 
 //startup
+
 define('APP_PATH', './company/'); //²»°üÀ¨appÄ¿Â¼
 
 require dirname(__FILE__) . '/QXDream/QXDream.php';

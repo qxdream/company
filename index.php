@@ -9,6 +9,7 @@
 	@version  $Id: index.php 2010-11-30
 */
 
+//startup
 define('APP_PATH', './company/'); //²»°üÀ¨appÄ¿Â¼
 
 require dirname(__FILE__) . '/QXDream/QXDream.php';

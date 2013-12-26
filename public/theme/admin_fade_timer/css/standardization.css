@@ -1,0 +1,12 @@
+/******** Normalizes *********/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,select,blockquote,q,th,td,p { margin: 0; padding: 0; }
+h1,h2,h3,h4,h5,h6 { font-size: 100%; }
+ol,ul { list-style: none; }
+address,caption,cite,code,dfn,em,th,var { font-weight: normal; font-style: normal; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset,img,acronym { border: 0; }
+img { vertical-align: text-bottom; }
+caption,th { text-align: left; }
+input,select,button { vertical-align: middle; }
+q:before,q:after { content: ''; }
+h1,h2,h3,h4,h5,h6,li,dt,dd,th,td,div,form,blockquote,q { word-break: break-all; word-wrap: break-word; *word-wrap: auto; } /*word-wrap: break-word会使IE浮动元素的两个尖括号间解析出空白节点,造成裂缝*/

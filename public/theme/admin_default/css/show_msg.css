@@ -1,0 +1,8 @@
+* { margin: 0; padding: 0; }
+body { font: 12px/1.8 'ËÎÌו', Arial, verdana; background: #f9f9f9; }
+#wrapper { border: 1px solid #ccc; background: #f7f7f7; width: 340px; padding: 5px; position: absolute; top: 20%; left: 50%; margin: -71px 0 0 -175px; padding: 5px; -moz-border-radius: 10px; -webkit-border-radius: 5px; }
+#in { width: 300px; background: #fff; padding: 10px 20px; overflow: hidden; word-wrap: break-word;  }
+h1 { font-size: 18px; font-weight: normal; font-family: '÷ÚÌו'; text-align: center; border-bottom: 1px solid #ccc; margin-bottom: 10px; }
+#red,a:hover { color: #bc2931; }
+a { color: #1f3a87; }
+b { color: #000; }

@@ -1,0 +1,1 @@
+<p>Powered By <a href="<?php echo DEVELOPER_HOMEPAGE; ?>" target="_blank"><b>QXDream Mutiuser V<?php echo PRO_VERSION; ?></b></a></p>

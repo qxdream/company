@@ -1,10 +1,10 @@
 <?php
-/* 
+/*
     [QXDream] Copyright (C)2010-2011 QXDream Mutiuser
-	
+
     @homepage http://www.qxhtml.cn 倾行博客
 	@author   踏雪残情 <xuexian_123@163.com>
-	
+
 	@create   2010-11-30 控制器 $
 	@version  $Id: Controller.class.php 1.1 2011-05-17
 */
@@ -15,7 +15,7 @@ class Controller {
 	private $control;    //控制器
 	private $method;     //方法
 	protected $view;     //视图
-	
+
 	/**
 	+-----------------------------------------------------------------------
 	* 初始化
@@ -31,7 +31,7 @@ class Controller {
 			$this->_initialize();
 		}
 	}
-	
+
 	/**
 	+-----------------------------------------------------------------------
 	* 调用不存在的方法
@@ -44,7 +44,7 @@ class Controller {
 	public function __call($func, $args) {
 		system_error('method_not_exists', array('method' => $func));
 	}
-	
+
 	/**
 	+-----------------------------------------------------------------------
 	* 预载信息
@@ -59,7 +59,7 @@ class Controller {
 		define('HTTP_REFERER', isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');
 		define('SCHEME', $_SERVER['SERVER_PORT'] == '443' ? 'https://' : 'http://'); //scheme[ski:m] n 计划,策划,scheme：//host：port/path
 		define('SITE_URL', SCHEME . $_SERVER['HTTP_HOST'] . QX_PATH);
-		
+
 		//按指定编码输出
 		header('Content-Type: text/html; charset=' . DB_CHARSET);
 		//支持页面回跳
@@ -71,10 +71,10 @@ class Controller {
 		timezone();
 		// 重新分配脚本站用最大内存
 		if(get_cfg_var('memory_limit') < '32M') memory_limit();
-		
+
 		$GLOBALS['QXDREAM']['online_ip']   = get_ip();
 		$GLOBALS['QXDREAM']['timestamp']   = time();
-		$GLOBALS['QXDREAM']['language']    = language('QXDream'); 
+		$GLOBALS['QXDREAM']['language']    = language('QXDream');
 		$GLOBALS['QXDREAM']['query_num']   = 0; //执行的sql语句
 		$GLOBALS['QXDREAM']['COMPANY_UID'] = cache_read('company_uid'); //公司缓存
 		if(APP_PATH != ADMIN_PATH && defined('IN_ADMIN')) { //此条件满足，说明非主后台目录下的后台应用程序
@@ -86,7 +86,7 @@ class Controller {
 			is_file($share_action) && require_once $share_action;
 		}
 	}
-	
+
 	/**
 	+-----------------------------------------------------------------------
 	* 运行系统
@@ -123,7 +123,7 @@ class Controller {
 		//存在就调用该方法
 		$instance->$method();
 	}
-	
+
 	/**
 	+-----------------------------------------------------------------------
 	* 建立URL
@@ -141,18 +141,18 @@ class Controller {
 		//判断控制器的值是否为空，为空时使用默认值
 		$url_data['control'] = $this->control = !empty($this->control) ? $this->control : DEFAULT_CONTROL;
 		$url_data['method']  = $this->method  = !empty($this->method)  ? $this->method  : DEFAULT_METHOD;
-		
+
 		if(in_array($this->method, array('__construct', 'init', 'run', 'build_url', 'load_model', '_initialize'))) {
 			show_msg('invalid_request', 'stay');
 		}
-		
+
 		$count = count($path_info_array);
 		for($i = 2; $i < $count; $i = $i + 2) {
 			$val = $i + 1;
 			if(!isset($path_info_array[$val])) { continue; }
 			$url_data[$path_info_array[$i]] = $path_info_array[$val];
 		}
-		
+
 		//优化query_string的参数
 		if(isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) {
 			parse_str($_SERVER['QUERY_STRING'], $pair_arr);
@@ -162,7 +162,7 @@ class Controller {
 				if('control' == $k || 'method' == $k) { continue; }
 				$other_para .= $k . '/' . $v . '/';
 			}
-			redirect(app_url() . $this->control . '/' . $this->method . '/' . $other_para); 
+			redirect(app_url() . $this->control . '/' . $this->method . '/' . $other_para);
 		}
 		$_GET = $url_data;
 		//外部数据校验过滤
@@ -171,13 +171,13 @@ class Controller {
 				$_POST   = slash($_POST);
 				$_GET    = slash($_GET);
 				$_COOKIE = slash($_COOKIE);
+                $_SERVER = slash($_SERVER);
 			}
 			$_POST   = filter_sql($_POST);
 			$_GET    = filter_sql($_GET);
-			$_COOKIE = filter_sql($_COOKIE);
 		}
 	}
-	
+
 	/**
 	+-----------------------------------------------------------------------
 	* 载入模型

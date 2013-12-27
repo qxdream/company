@@ -1,10 +1,10 @@
 <?php
-/* 
+/*
     [QXDream] Copyright (C)2010-2011 QXDream Mutiuser
-	
+
     @homepage http://www.qxhtml.cn 倾行博客
 	@author   踏雪残情 <xuexian_123@163.com>
-	
+
 	@create   2011-02-24 后台登录控制器 $
 	@version  $Id: LoginAction.class.php 1.0 2011-04-03
 */
@@ -15,7 +15,7 @@ class LoginAction extends ShareAction {
 	public $prompt; //提示信息
 	public $prompt_id; //提示信息标签ID
 	private $enable_id_code = FALSE;
-	
+
     /**
 	+-----------------------------------------------------------------------
 	* 初始化数据
@@ -50,7 +50,7 @@ class LoginAction extends ShareAction {
 				$this->prompt_id = 'login_prompt_error';
 				$this->show_error();
 			}
-			
+
 			if(!filled_out($_POST, 'user_pass')) {
 				$this->prompt = lang('filled_out');
 				$this->prompt_id = 'login_prompt_error';
@@ -64,11 +64,11 @@ class LoginAction extends ShareAction {
 				$this->view->assign('not_filled', $not_filled);
 				$this->show_error();
 			}
-			
+
 			$user_name = trim($_POST['user_name']); //编码如果是gbk,中文用户名要转成gbk的,不然AJAX传输会乱码,致使用户名无效
 			$user_pass = $_POST['user_pass'];
 			$id_code   = isset($_POST['id_code']) ? trim($_POST['id_code']) : '';
-			
+
 			$result = '';
 			//如果要设置COOKIE保存一个小时，时间参数就为$timestamp + 3600
 			$result = $this->user->login($user_name, $user_pass, $id_code, $this->enable_id_code);
@@ -111,7 +111,7 @@ class LoginAction extends ShareAction {
 			}
 			$this->safe_time->remove();
 			unset($result);
-			
+
 			//全部验证通过,给予管理员session
 			$_SESSION['is_admin'] = 'qx_admin';
 			if(OVERTIME > 0) $_SESSION['ontime'] = $GLOBALS['QXDREAM']['timestamp'];

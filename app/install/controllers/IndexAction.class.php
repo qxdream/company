@@ -25,7 +25,6 @@ class IndexAction extends Controller {
 	}
 	//环境检测
 	public function index_2() {
-        exit;
 		$dev_pass = $dir_pass = TRUE;
 		$development_data = $dir_privilege_data = array();
 		$development_data[] = array('item' => '操作系统', 'cur_development' => php_uname(), 'need_setting' => 'Windows_NT/Linux/Freebsd', 'pass' => TRUE);

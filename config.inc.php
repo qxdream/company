@@ -10,11 +10,11 @@
 */
 
 //Êý¾Ý¿âÅäÖÃÐÅÏ¢
-define('DB_HOST', ''); //Êý¾Ý¿âÖ÷»úµØÖ·
-define('DB_USER', ''); //Êý¾Ý¿âÓÃ»§Ãû
-define('DB_PASS', ''); //Êý¾Ý¿âÃÜÂë
-define('DB_NAME', ''); //Êý¾Ý¿âÃû³Æ
-define('DB_PRE', ''); //Êý¾Ý±íÇ°×º
+define('DB_HOST', 'localhost'); //Êý¾Ý¿âÖ÷»úµØÖ·
+define('DB_USER', 'root'); //Êý¾Ý¿âÓÃ»§Ãû
+define('DB_PASS', '123456'); //Êý¾Ý¿âÃÜÂë
+define('DB_NAME', 'qxdm_mutiuser'); //Êý¾Ý¿âÃû³Æ
+define('DB_PRE', 'qxdm_'); //Êý¾Ý±íÇ°×º
 define('DB_CHARSET', 'gbk'); //Êý¾Ý¿â×Ö·û¼¯
 define('DB_PCONNECT', FALSE); //ÊÇ·ñ¿ªÆô³Ö¾ÃÁ¬½Ó
 
@@ -23,8 +23,12 @@ define('COOKIE_DOMAIN', ''); //Cookie ×÷ÓÃÓò
 define('COOKIE_PATH', '/'); //Cookie ×÷ÓÃÂ·¾¶
 define('COOKIE_PRE', 'qx_multi_'); //Cookie Ç°×º
 
+define('PATH_INFO', !empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (!empty($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : (!empty($_SERVER['REDIRECT_PATH_INFO']) ? $_SERVER['REDIRECT_PATH_INFO'] : '')));
+
 //µ±Ç°½Å±¾Ãû
-define('PHP_SELF', isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : $_SERVER['PHP_SELF']); 
+//nginxÏÂÓÐÎÊÌâ£¬´ý½â¾ö
+//define('PHP_SELF', isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : $_SERVER['PHP_SELF']);
+define('PHP_SELF', PATH_INFO ? substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], PATH_INFO)) : $_SERVER['REQUEST_URI']);
 //ÍøÕ¾Â·¾¶ÅäÖÃ£¬¿ò¼Ü·ÃÎÊÂ·¾¶£¬Ïà¶ÔÓÚÓòÃû
 define('QX_PATH', dirname(PHP_SELF) . '/');
 define('ADMIN_PATH', './qx-admin/'); //ºóÌ¨Â·¾¶,±ØÐëÖ¸ÏòºóÌ¨APP_PATHÄ¿Â¼
@@ -38,7 +42,6 @@ define('CONTROLLERS_ROOT', QX_ROOT . APP_DIR . APP_PATH . 'controllers/'); //¿ØÖ
 define('MODELS_ROOT', QX_ROOT . APP_DIR . APP_PATH . 'models/'); //Ä£ÐÍÄ¿Â¼
 define('PUBLIC_DIR', 'public/'); //¹«¹²ÎÄ¼þÄ¿Â¼
 define('LIBS_ROOT', QX_ROOT . APP_DIR . APP_PATH . 'libs/' ); //Àà¿âÄ¿Â¼
-define('PATH_INFO', isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (isset($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : (isset($_SERVER['REDIRECT_PATH_INFO']) ? $_SERVER['REDIRECT_PATH_INFO'] : '')));
 
 //ÊÓÍ¼ÉèÖÃ
 define('ADMIN_PLAN', 'admin_fade_timer'); //ºóÌ¨Ö÷Ìâ·ç¸ñ
@@ -58,17 +61,17 @@ define('UPLOAD_MAXSIZE', 1024000); //ÔÊÐíÉÏ´«µÄ¸½¼þ×î´óÖµ
 define('UPLOAD_ALLOW_PIC_SUFFIX', 'jpg|jpeg|gif|bmp|png'); //Í¼Æ¬ºóÌ¨
 
 //°²È«ÉèÖÃ
-define('QX_KEY',''); //µÇÂ¼ÑéÖ¤ÃÜÔ¿
+define('QX_KEY', 'qxdm-sa3k-k3j9-883a'); //µÇÂ¼ÑéÖ¤ÃÜÔ¿
 define('OVERTIME', 0); //ºóÌ¨ÓÃ»§»á»°³¬Ê±Ê±¼ä,0ÎªÓÀ²»³¬Ê±
-define('DEBUG', FALSE); //ÊÇ·ñÏÔÊ¾µ÷ÊÔÐÅÏ¢
+define('DEBUG', TRUE); //ÊÇ·ñÏÔÊ¾µ÷ÊÔÐÅÏ¢
 define('IS_LOG', TRUE); //´íÎóÐÅÏ¢¼ÇÂ¼ÈÕÖ¾
 define('IS_ID_CODE', FALSE); //ÑéÖ¤ÂëÊÇ·ñ¿ªÆô,³ý»áÔ±µÇÂ½ºÍ×¢²áµÄ
 define('LOGIN_TIMES', 6); //´íÎóµÇÂ¼´ÎÊýÏÞÖÆ
 define('LOGIN_INTERVAL_TIME', 900); //³¬³öµÇÂ¼´ÎÊýÏÞÖÆºó,¼ä¸ô¶àÉÙÊ±¼äµÇÂ¼
 
 //ÆäËûÉèÖÃ
-define('CREATOR', ''); //´´Ê¼ÈËID,¶à¸öÓÃ¶ººÅ¸ô¿ª
-define('RUNTIME', TRUE); //ÆôÓÃRUNTIME¹¦ÄÜ
+define('CREATOR', '1'); //´´Ê¼ÈËID,¶à¸öÓÃ¶ººÅ¸ô¿ª
+define('RUNTIME', FALSE); //ÆôÓÃRUNTIME¹¦ÄÜ
 define('LANG_PACK', 'zh-cn'); //ÍøÕ¾ÓïÑÔ°ü
 define('TIMEOFFSET', 8); //Ê±ÇøÆ«ÒÆÁ¿,8ÊÇ±±¾©Ê±Çø
 define('IS_SHOW_EXEC_INFO', FALSE); //Ö´ÐÐsqlÓï¾äÊýÁ¿ÏÔÊ¾

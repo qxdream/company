@@ -229,6 +229,7 @@ function get_entry() {
 	$entry = filename_remove_suffix(basename(PHP_SELF));
 	return 'index' == $entry && REWRITE ? '' : $entry;
 }
+get_entry();
 
 //获取应用入口的URL
 function app_url($entry = '') {

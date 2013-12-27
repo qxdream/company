@@ -26,11 +26,17 @@ define('COOKIE_PRE', 'qx_multi_'); //Cookie 前缀
 define('PATH_INFO', !empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : (!empty($_SERVER['ORIG_PATH_INFO']) ? $_SERVER['ORIG_PATH_INFO'] : (!empty($_SERVER['REDIRECT_PATH_INFO']) ? $_SERVER['REDIRECT_PATH_INFO'] : '')));
 
 //当前脚本名
-//nginx下有问题，待解决
-//define('PHP_SELF', isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : $_SERVER['PHP_SELF']);
-define('PHP_SELF', PATH_INFO ? substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], PATH_INFO)) : $_SERVER['REQUEST_URI']);
+if (!empty($_SERVER['DOCUMENT_URI'])) {
+    //nginx
+    //PATH_INFO有值，去掉/后面的
+    define('PHP_SELF', trim(PATH_INFO, '/') ? substr($_SERVER['DOCUMENT_URI'], 0, strpos($_SERVER['DOCUMENT_URI'], PATH_INFO)) : $_SERVER['DOCUMENT_URI']);
+} else {
+    //apache
+    define('PHP_SELF', isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : $_SERVER['PHP_SELF']);
+}
+
 //网站路径配置，框架访问路径，相对于域名
-define('QX_PATH', dirname(PHP_SELF) . '/');
+define('QX_PATH', rtrim(dirname(PHP_SELF), '/') . '/');
 define('ADMIN_PATH', './qx-admin/'); //后台路径,必须指向后台APP_PATH目录
 !defined('APP_PATH') && define('APP_PATH', ADMIN_PATH);
 

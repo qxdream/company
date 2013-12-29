@@ -36,7 +36,8 @@ if (!empty($_SERVER['DOCUMENT_URI'])) {
 }
 
 //网站路径配置，框架访问路径，相对于域名
-define('QX_PATH', rtrim(dirname(PHP_SELF), '/') . '/');
+//当dirname('/index.php')时会变成\，所以要去掉\
+define('QX_PATH', rtrim(rtrim(dirname(PHP_SELF), '/'), '\\') . '/');
 define('ADMIN_PATH', './qx-admin/'); //后台路径,必须指向后台APP_PATH目录
 !defined('APP_PATH') && define('APP_PATH', ADMIN_PATH);
 
@@ -81,7 +82,7 @@ define('RUNTIME', FALSE); //启用RUNTIME功能
 define('LANG_PACK', 'zh-cn'); //网站语言包
 define('TIMEOFFSET', 8); //时区偏移量,8是北京时区
 define('IS_SHOW_EXEC_INFO', FALSE); //执行sql语句数量显示
-define('REWRITE', FALSE); //前台是否开启拟静态,需服务器支持apache重定向
+define('REWRITE', TRUE); //前台是否开启拟静态,需服务器支持apache重定向
 define('PIC_WIDTH', 600); //图片超过多少宽度,显示时就缩放到此宽度(以防图片撑破页面),为0时不缩放
 define('DEVELOPER_HOMEPAGE', 'http://www.qxhtml.cn');
 define('DEVELOPER', '踏雪残情');

@@ -80,7 +80,7 @@ window.onresize = function() { //改变窗口大小时
 		<div id="branding">
 				<div id="tool" class="f_r">
 						<div id="func" class="f_l">
-								<a href="<?php echo app_url() . 'user/edit/user_id/' . $qx_user_id; ?>" target="right"><?php echo $qx_user_name; ?></a>(<?php echo $qx_role; ?>) | <a href="<?php echo app_url() . 'login/logout/'; ?>"><?php echo $admin_language['quit']; ?></a> | <a href="<?php echo SITE_URL . (REWRITE ? '' : 'index.php/') . (!empty($qx_company_uid) ? $qx_company_uid . '/' : ''); ?>" target="_blank"><?php echo $admin_language['site_index']; ?></a>
+								<a href="<?php echo app_url() . 'user/edit/user_id/' . $qx_user_id; ?>"><?php echo $qx_user_name; ?></a>(<?php echo $qx_role; ?>) | <a href="<?php echo app_url() . 'login/logout/'; ?>"><?php echo $admin_language['quit']; ?></a> | <a href="<?php echo SITE_URL . (REWRITE ? '' : 'index.php/') . (!empty($qx_company_uid) ? $qx_company_uid . '/' : ''); ?>" target="_blank"><?php echo $admin_language['site_index']; ?></a>
 						</div>
 				</div>
 				<h1 class="f_l"><a href="" class="a_text_hidden" target="right">倾行后台管理系统</a></h1>
